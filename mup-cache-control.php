@@ -83,7 +83,7 @@ class MUP_Cache_Control {
         } elseif ( $wp_query->is_single() ) {
             $directives = get_cache_control_directive( 'single' );
         } elseif ( $wp_query->is_page() ) {
-            $directives = get_cache_control_directive( 'front_page' );
+            $directives = get_cache_control_directive( 'page' );
         } elseif ( $wp_query->is_home() ) {
             $directives = get_cache_control_directive( 'home' );
         } elseif ( $wp_query->is_category() ) {
