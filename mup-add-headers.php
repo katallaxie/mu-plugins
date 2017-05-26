@@ -97,6 +97,18 @@ class MUP_Add_Headers {
         foreach( $headers as $key => $value ) {
             header( sprintf('%s: %s', $key, $value) );
         }
+        
+                if ( isset( $_SERVER['HTTP_IF_MODIFIED_SINCE'] || isset( $_SERVER['HTTP_IF_NONE_MATCH'] ) ) &&
+            strtotime( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) >= $mtime ) {
+            
+            if ( function_exists( 'http_response_code' ) ) {
+                http_response_code( 304 );
+            } else {
+               header( $this->get_http_protocol() . ' 304 Not Modified' ); 
+            }
+
+            exit;
+        }
 
     }
 
